@@ -1,0 +1,123 @@
+{
+  "swaps": [
+    {
+      "id": 1,
+      "name": "Electric Bicycle",
+      "category": "Electronics",
+      "description": "I bought this few months ago for my late son. I don't need it anymore",
+      "image_url": "https://res.cloudinary.com/malikbanks/image/upload/v1653926520/swap-images/hipster-bicycle-morning-sunrise-by-sea.jpg",
+      "likes": 14,
+      "views": 92,
+      "needs": [
+        "PS4",
+        "Book",
+        "Scooter"
+      ],
+      "type": "swap",
+      "date_published": "2022-06-27T02:03:12.105Z"
+    },
+    {
+      "id": 2,
+      "name": "The Alchemist - Paperback",
+      "category": "Books",
+      "description": "A lovely book this is. I would love to swap with another self-help book",
+      "image_url": "https://res.cloudinary.com/malikbanks/image/upload/v1653935411/swap-images/080666f8867c1a01dc14decabe5417fc.jpg",
+      "likes": 52,
+      "views": 292,
+      "needs": [
+        "Book",
+        "bike",
+        "paper"
+      ],
+      "type": "swap",
+      "date_published": "2022-07-29T12:59:32.454Z"
+    },
+    {
+      "id": 3,
+      "name": "iPhone 8",
+      "category": "Electronics",
+      "description": "",
+      "image_url": "https://res.cloudinary.com/malikbanks/image/upload/v1653935410/swap-images/jonny-caspari-28p5zbT8vew-unsplash.jpg",
+      "likes": 9,
+      "views": 30,
+      "needs": [
+        "Book",
+        "Any Item",
+        "iPhone"
+      ],
+      "type": "free",
+      "date_published": "2022-06-27T01:07:58.285Z"
+    },
+    {
+      "name": "Yeezy Boost 700vew",
+      "category": "Clothing",
+      "description": "Neww Item brand new",
+      "image_url": "https://www.modern-notoriety.com/wp-content/uploads/2022/02/adidas-yeezy-boost-700-wave-runner-B75571-2022-restock.jpg",
+      "likes": 5,
+      "views": 27,
+      "needs": [
+        "Sneaker",
+        " pc",
+        " phone",
+        " "
+      ],
+      "type": "swap",
+      "date_published": "2022-06-27T01:41:12.533Z",
+      "id": 4
+    },
+    {
+      "name": "Coffee Table large",
+      "category": "Home",
+      "description": "A very neat coffee table used for 2 months",
+      "image_url": "https://www.homestratosphere.com/wp-content/uploads/2014/11/woodtable-870x450.jpg.webp",
+      "likes": 5,
+      "views": 11,
+      "needs": [
+        "Want nothing in return."
+      ],
+      "type": "swap",
+      "date_published": "2022-06-27T01:08:41.107Z",
+      "id": 5
+    },
+    {
+      "name": "Chair 223",
+      "category": "Home",
+      "description": "Gotta let this one go hbnb",
+      "image_url": "https://contents.mediadecathlon.com/p1749436/k$a2f3669101f906b354461ed9efd3ceee/extremely-comfortable-folding-camping-chair-reclinable-comfort.jpg?&f=800x800",
+      "likes": 1,
+      "views": 20,
+      "type": "free",
+      "needs": [
+        "nothing"
+      ],
+      "date_published": "2022-06-27T00:44:10.467Z",
+      "id": 6
+    }
+  ],
+  "offers": [
+    {
+      "offerName": "PS4 2018",
+      "offerDesc": "brand new ps4, never used before",
+      "offerImage": "https://gmedia.playstation.com/is/image/SIEPDC/ps4-slim-image-block-01-en-24jul20?$1600px--t$",
+      "offerFor": 4,
+      "offerDate": "2022-06-27T09:56:01.353Z",
+      "id": 1
+    },
+    {
+      "offerName": "Who took my cheese",
+      "offerDesc": "Really Awesome book, you will love it",
+      "offerImage": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1388639717l/4894.jpg",
+      "offerFor": 2,
+      "offerDate": "2022-06-27T10:41:03.586Z",
+      "id": 2
+    },
+    {
+      "offerName": "PS5 2020",
+      "offerDesc": "brand new ps5, never used before",
+      "offerImage": "https://i5.walmartimages.com/asr/1d3de94e-3d14-49a7-8cab-0595739e8804.5fa1eb7060645da2fd6fb752ca7ad5d9.jpeg",
+      "offerFor": 4,
+      "offerDate": "2022-06-27T09:56:01.353Z",
+      "id": 3
+    }
+  ]
+}
