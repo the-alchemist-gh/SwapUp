@@ -5,3 +5,8 @@
 body{
   background-color: #EEF2F4;
 }
+
+.card-image-layer{
+  background-color: red;
+  /* background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%); */
+}
