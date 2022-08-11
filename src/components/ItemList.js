@@ -1,11 +1,15 @@
 import React from "react";
 import Item from "./Item";
 
-function ItemList(){
+function ItemList({itemData}){
   return (
     <>
-      <div class="p-10 md:container md:mx-auto grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-3">
-        <Item />
+      <div class="p-10 md:container md:mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10">
+        {
+          itemData.map((item)=>(
+            <Item key={item.id} items={item}/>
+          ))
+        }
       </div>
     </>
   )
