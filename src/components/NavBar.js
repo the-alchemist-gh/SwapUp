@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import { NavLink } from "react-router-dom";
 import NavButton from "./NavButton";
 
 function Navbar({sendSearchValue}){
@@ -17,10 +18,10 @@ function Navbar({sendSearchValue}){
                 <div>
                     <div className="flex items-center justify-between py-3 md:py-5 md:block">
                         <div className="inline-flex">
-                          <a href="javascript:void(0)">
+                          <NavLink to="/">
                             {/* <img src="../src/assets/404.gif"/> */}
                               <h2 className="text-2xl font-bold">WEDEYSWAP</h2>
-                          </a>
+                          </NavLink>
                           
                         </div>
                         
@@ -80,10 +81,10 @@ function Navbar({sendSearchValue}){
                       <div className="mt-3 space-y-2 lg:hidden md:inline-block">
                         <ul className="items-center lg-hidden flex justify-between md:flex md:space-x-6 md:space-y-0">
                             <li className="text-teal-600">
-                                <a href="javascript:void(0)">Log In</a>
+                                <NavLink to="/login">Log In</NavLink>
                             </li>
                             <li className="text-teal-600">
-                                <a href="javascript:void(0)">Register</a>
+                                <NavLink to="/register">Register</NavLink>
                             </li>
                         </ul>
                         <NavButton />
@@ -100,10 +101,10 @@ function Navbar({sendSearchValue}){
                              <NavButton />
                           </li>
                           <li className="text-teal-600">
-                              <a href="javascript:void(0)">Log In</a>
+                              <NavLink to="/login">Log In</NavLink>
                           </li>
                           <li className="text-teal-600">
-                              <a href="javascript:void(0)">Register</a>
+                              <NavLink to="/register">Register</NavLink>
                           </li>
                           
                       </ul>

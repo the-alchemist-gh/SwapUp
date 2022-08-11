@@ -1,8 +1,11 @@
 import React,{useEffect, useState} from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import ItemCategory from "./components/ItemCategory";
 import ItemList from "./components/ItemList";
+import Login from "./components/Login";
+import Register from "./components/Register";
+
 // import itemData from "../db.json";
 
 function App() {
@@ -58,8 +61,19 @@ function App() {
   return (
     <>
       <Navbar sendSearchValue = {getSearchValue} />
-      <ItemCategory sendCategoryValue = {getCategoryValue}  />
-      <ItemList updatedItem={onUpdateItem} itemData = {filteredItemData} />
+      <Routes>
+        <Route path="/register" element={<Register />}>
+        </Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route exact path="/" element={
+          <>
+            <ItemCategory sendCategoryValue = {getCategoryValue}  />
+            <ItemList updatedItem={onUpdateItem} itemData = {filteredItemData} />
+          </>
+        }>
+        </Route>
+      </Routes>
+      
     </>
   );
 }
