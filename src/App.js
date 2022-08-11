@@ -24,10 +24,32 @@ function App() {
     setCategoryState(value);
   }
 
+  function onUpdateItem(value){
+    const updateItem = itemState.map((item)=>{
+      if(item.id===value.id){
+        return value
+      } else {
+        return item
+      }
+    })
+
+    setItemState(updateItem)
+  }
+
     const filteredItemData = itemState.filter((item)=>{
-      return (
-          item.name.toLowerCase().includes(searchState.toLowerCase()) ? true : null
-      )
+
+      if (categoryState === "All" && searchState === '') return true;
+
+      if (categoryState === item.category && searchState === '') return true;
+
+      if (categoryState === "All" && (item.name.toLowerCase().includes(searchState.toLowerCase()))) return true;
+
+      return ((item.category === categoryState) && (item.name.toLowerCase().includes(searchState.toLowerCase())));
+      // return (
+      //     item.name.toLowerCase().includes(searchState.toLowerCase()) ? true : (
+      //       item.category === categoryState ? true : null
+      //     )
+      // )
       
       // return (item.category !== "All")
     })
@@ -36,7 +58,7 @@ function App() {
     <>
       <Navbar sendSearchValue = {getSearchValue} />
       <ItemCategory sendCategoryValue = {getCategoryValue}  />
-      <ItemList itemData = {filteredItemData} />
+      <ItemList updatedItem={onUpdateItem} itemData = {filteredItemData} />
     </>
   );
 }
