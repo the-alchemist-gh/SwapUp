@@ -23,7 +23,7 @@
       "description": "A lovely book this is. I would love to swap with another self-help book",
       "image_url": "https://res.cloudinary.com/malikbanks/image/upload/v1653935411/swap-images/080666f8867c1a01dc14decabe5417fc.jpg",
       "likes": 56,
-      "views": 292,
+      "views": 297,
       "needs": [
         "Book",
         "bike",
@@ -70,7 +70,7 @@
       "category": "Home",
       "description": "A very neat coffee table used for 2 months",
       "image_url": "https://www.homestratosphere.com/wp-content/uploads/2014/11/woodtable-870x450.jpg.webp",
-      "likes": 9,
+      "likes": 12,
       "views": 11,
       "needs": [
         "Want nothing in return."
@@ -92,6 +92,22 @@
       ],
       "date_published": "2022-06-27T00:44:10.467Z",
       "id": 6
+    },
+    {
+      "name": "ps4 console",
+      "category": "Services",
+      "description": "Bought this months ago but dont need it anymore",
+      "image_url": "https://productimages.hepsiburada.net/s/25/375/10104520015922.jpg",
+      "likes": 0,
+      "views": 1,
+      "needs": [
+        "book",
+        "watch",
+        "phone"
+      ],
+      "type": "swap",
+      "date_published": "2022-08-11T21:50:20.699Z",
+      "id": 7
     }
   ],
   "offers": [

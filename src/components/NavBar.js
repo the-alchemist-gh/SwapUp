@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import { NavLink } from "react-router-dom";
 import NavButton from "./NavButton";
+// import NewItem from "./NewItem";
 
 function Navbar({sendSearchValue}){
   const [navbar, setNavbar] = useState(false);
@@ -9,6 +10,10 @@ function Navbar({sendSearchValue}){
     e.preventDefault();
     sendSearchValue(e.target.value);
   }
+
+//   function handleAddNewItem(){
+
+//   }
 
   return (
     <div >
@@ -20,7 +25,7 @@ function Navbar({sendSearchValue}){
                         <div className="inline-flex">
                           <NavLink to="/">
                             {/* <img src="../src/assets/404.gif"/> */}
-                              <h2 className="text-2xl font-bold">WEDEYSWAP</h2>
+                              <h2 className="text-2xl text-teal-600 font-bold">WEDEYSWAP</h2>
                           </NavLink>
                           
                         </div>

@@ -1,7 +1,10 @@
 import React,{useState,useEffect} from "react";
+import { NavLink } from "react-router-dom";
+import OfferButton from "./OfferButton";
 
-function Item({items, updatedItem}){
-  const {id,name,description,image_url,likes,views,needs,type} = items;
+
+function Item({items, updatedItem, offerData}){
+  const {id,name,description,category,image_url,likes,views,needs,type} = items;
   const [likeState, setLikeState] = useState(likes);
   const [btnIcon, setBtnIcon] = useState(false);
 
@@ -26,6 +29,8 @@ function Item({items, updatedItem}){
     .then(r=>r.json())
     .then(data=>updatedItem(data))
   },[likeCount,id])
+
+  const offerCounts = offerData.reduce((c, { offerFor: key }) => (c[key] = (c[key] || 0) + 1, c), {});
 
   return (
     <>
@@ -55,7 +60,7 @@ function Item({items, updatedItem}){
           </div>
         </div>
         <div className="py-4 border-b mx-6">
-          <div className="font-bold text-xl mb-2">{name}</div>
+          <div className="font-bold text-xl mb-2"><NavLink to={`/item/${category}/${id}`}>{name}</NavLink></div>
           <p className="text-gray-700 text-base">
             {description}
           </p>
@@ -73,19 +78,27 @@ function Item({items, updatedItem}){
             <h6 className="flex mb-1 border-b pb-1 text-gray-500 font-semibold text-sm">
               {views} views
             </h6>
-            <h6 className="flex leading-none align-middle text-green-700 items-center font-semibold text-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M8 5a1 1 0 100 2h5.586l-1.293 1.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L13.586 5H8zM12 15a1 1 0 100-2H6.414l1.293-1.293a1 1 0 10-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L6.414 15H12z" />
-            </svg>
-              2 offers</h6>
+            
+            
+              {
+                isNaN(offerCounts[id]) ? 
+                <h6 className="flex leading-none align-middle text-green-700 items-center font-semibold text-sm">
+                  No offers yet
+                </h6>
+                   : 
+                    <h6 className="flex leading-none align-middle text-green-700 items-center font-semibold text-sm">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M8 5a1 1 0 100 2h5.586l-1.293 1.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L13.586 5H8zM12 15a1 1 0 100-2H6.414l1.293-1.293a1 1 0 10-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L6.414 15H12z" />
+                      </svg> 
+                      {
+                        offerCounts[id] === 1 ? `${offerCounts[id]} offers` : 
+                        `${offerCounts[id]} offers` 
+                     }
+                </h6>
+              }
           </div>
+          <OfferButton />
           
-          <button type="button" className="inline-flex justify-center items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-gray-900 bg-teal-600">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M8 5a1 1 0 100 2h5.586l-1.293 1.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L13.586 5H8zM12 15a1 1 0 100-2H6.414l1.293-1.293a1 1 0 10-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L6.414 15H12z" />
-            </svg>
-            Make an Offer
-          </button>
         </div>
       </div>
 
