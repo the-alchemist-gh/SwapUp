@@ -3,16 +3,59 @@ import { useParams,NavLink } from "react-router-dom";
 import OfferButton from "./OfferButton";
 
 
-function ItemDetails(){
+function ItemDetails(updatedItem){
   const [itemDetail, setItemDetail] = useState({});
-  const { id, category } = useParams()
+
+  const { id } = useParams()
 
   useEffect(() => {
+
       fetch(`http://localhost:3000/swaps/${id}`)
       .then(r => r.json())
-      .then(data => setItemDetail(data))
+      .then(data => {
+        setItemDetail(data)
+        
+        fetch(`http://localhost:3000/swaps/${id}`,{
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            views: parseInt(data.views+1) ,
+          }),
+        })
+        .then(r=>r.json())
+        .then(data2=>{
+          updatedItem(data2);
+          setItemDetail(data2);
+        }
+        
+        )
+
+      })
   }, [id]);
-  // console.log(itemDetail.name)
+
+  function handleLikeBtn(){
+    fetch(`http://localhost:3000/swaps/${id}`,{
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            likes :(itemDetail.likes +1 ),
+          }),
+        })
+        .then(r=>r.json())
+        .then(data3=>{
+          console(data3);
+          setItemDetail(...itemDetail,data3);
+        }
+        
+        )
+  }
+  console.log(itemDetail)
+
+
   return (
     <>
       <div className="bg-white">
@@ -75,13 +118,12 @@ function ItemDetails(){
                         <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
                       </svg>
                       {itemDetail.views} views</span></li>
-                    <li className="text-gray-400 font-medium"><span>
+                    <li className="text-gray-400 font-medium" onClick={handleLikeBtn}><span>
                       <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 mx-1 text-red-600`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                       </svg>
-                      {itemDetail.likes} Likes</span></li>
-                      
-                    
+                      {itemDetail.likes} Likes</span>
+                    </li>                    
                   </ul>
                 </div>
               </div>

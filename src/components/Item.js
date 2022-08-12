@@ -6,15 +6,46 @@ import OfferButton from "./OfferButton";
 function Item({items, updatedItem, offerData}){
   const {id,name,description,category,image_url,likes,views,needs,type} = items;
   const [likeState, setLikeState] = useState(likes);
+
   const [btnIcon, setBtnIcon] = useState(false);
 
-  let likeCount = likeState;
-
-  function handleClick(e){
-    setLikeState(likeState+1);
+  function handleClick(){
+    setLikeState(likeState + 1);
     setBtnIcon(true);
-    // alert(likeCount);
   }
+
+  // function handleViewClick(){
+    
+  //   setViewState(viewState+1)
+  //   console.log(viewState+1)
+  //   fetch(`http://localhost:3000/swaps/${id}`,{
+  //         method: "PATCH",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           views: parseInt(viewState) ,
+  //         }),
+  //       })
+  //       .then(r=>r.json())
+  //       .then(data=>console.log(data))
+
+  // }
+
+  // useEffect(()=>{
+  //   fetch(`http://localhost:3000/swaps/${id}`,{
+  //     method: "PATCH",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       views: parseInt(viewState) ,
+  //     }),
+  //   })
+  //   .then(r=>r.json())
+  //   .then(data=>console.log(data))
+
+  // },[id, viewState])
 
   useEffect(()=>{
     fetch(`http://localhost:3000/swaps/${id}`,{
@@ -23,18 +54,18 @@ function Item({items, updatedItem, offerData}){
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        likes: parseInt(likeCount) ,
+        likes: parseInt(likeState) ,
       }),
     })
     .then(r=>r.json())
     .then(data=>updatedItem(data))
-  },[likeCount,id])
+  },[id, likeState])
 
   const offerCounts = offerData.reduce((c, { offerFor: key }) => (c[key] = (c[key] || 0) + 1, c), {});
 
   return (
     <>
-      <div className="max-w-md bg-white rounded overflow-hidden shadow-lg">
+      <div className="max-w-md bg-white rounded overflow-visible shadow-lg">
         <div className="h-3/5 card-image-layer relative" >
           <img className="h-full w-full object-cover" src={image_url} alt={name}/>
           <div className="absolute bottom-0 left-0 right-0 py-10 bg-gradient-to-t from-gray-900">
@@ -51,7 +82,7 @@ function Item({items, updatedItem, offerData}){
                   </svg>
                   )
                 }
-                 {likeCount}
+                 {likeState}
               </span>
             </div>
             <span className="absolute bottom-0  bg-teal-200 text-teal-800 text-xs ml-3 mb-3 px-2 inline-block rounded-full  uppercase font-semibold tracking-wide">
@@ -60,18 +91,25 @@ function Item({items, updatedItem, offerData}){
           </div>
         </div>
         <div className="py-4 border-b mx-6">
-          <div className="font-bold text-xl mb-2"><NavLink to={`/item/${category}/${id}`}>{name}</NavLink></div>
+          <div className="font-bold text-xl mb-2"><NavLink to={`/item/${category}/${id}`}>{name}</NavLink>
+          </div>
           <p className="text-gray-700 text-base">
             {description}
           </p>
-          <div className="pt-4">
-            <p>Swap with</p>
-            {
-              needs.map((need,index)=>(
-                <span key={index} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{need}</span>
-              ))
-            }
-          </div>
+          {
+            type === "swap" ? 
+            <div className="pt-4">
+              <p>Swap with</p>
+              {
+                needs.map((need,index)=>(
+                  <span key={index} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{need}</span>
+                ))
+              }
+            </div> : 
+
+            <p>Get this Item for Free</p>
+          }
+          
         </div>
         <div className="mx-6 pt-4 pb-2 flex justify-between">
           <div>
@@ -97,7 +135,7 @@ function Item({items, updatedItem, offerData}){
                 </h6>
               }
           </div>
-          <OfferButton />
+          <OfferButton type={type} />
           
         </div>
       </div>

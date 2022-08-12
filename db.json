@@ -6,7 +6,7 @@
       "category": "Electronics",
       "description": "I bought this few months ago for my late son. I don't need it anymore",
       "image_url": "https://res.cloudinary.com/malikbanks/image/upload/v1653926520/swap-images/hipster-bicycle-morning-sunrise-by-sea.jpg",
-      "likes": 20,
+      "likes": 23,
       "views": 92,
       "needs": [
         "PS4",
@@ -38,8 +38,8 @@
       "category": "Electronics",
       "description": "",
       "image_url": "https://res.cloudinary.com/malikbanks/image/upload/v1653935410/swap-images/jonny-caspari-28p5zbT8vew-unsplash.jpg",
-      "likes": 11,
-      "views": 30,
+      "likes": 15,
+      "views": 94,
       "needs": [
         "Book",
         "Any Item",
@@ -54,7 +54,7 @@
       "description": "Neww Item brand new",
       "image_url": "https://www.modern-notoriety.com/wp-content/uploads/2022/02/adidas-yeezy-boost-700-wave-runner-B75571-2022-restock.jpg",
       "likes": 13,
-      "views": 27,
+      "views": 13,
       "needs": [
         "Sneaker",
         " pc",
@@ -85,7 +85,7 @@
       "description": "Gotta let this one go hbnb",
       "image_url": "https://contents.mediadecathlon.com/p1749436/k$a2f3669101f906b354461ed9efd3ceee/extremely-comfortable-folding-camping-chair-reclinable-comfort.jpg?&f=800x800",
       "likes": 11,
-      "views": 20,
+      "views": 10,
       "type": "free",
       "needs": [
         "nothing"
@@ -98,7 +98,7 @@
       "category": "Services",
       "description": "Bought this months ago but dont need it anymore",
       "image_url": "https://productimages.hepsiburada.net/s/25/375/10104520015922.jpg",
-      "likes": 0,
+      "likes": 2,
       "views": 1,
       "needs": [
         "book",
@@ -108,6 +108,34 @@
       "type": "swap",
       "date_published": "2022-08-11T21:50:20.699Z",
       "id": 7
+    },
+    {
+      "name": "Retro Fan",
+      "category": "Electronics",
+      "description": "Very old but works",
+      "image_url": "https://i.pinimg.com/originals/39/48/f0/3948f02f821c21a71bedefdd5acaa483.jpg",
+      "likes": 2,
+      "views": 4,
+      "needs": [
+        "Nothing"
+      ],
+      "type": "free",
+      "date_published": "2022-08-12T17:52:08.401Z",
+      "id": 8
+    },
+    {
+      "name": "High density mattress",
+      "category": "Home",
+      "description": "Got 3 pieces of this brand new mattress. What can you offer?",
+      "image_url": "https://cdn.shopify.com/s/files/1/0044/1208/0217/products/FirmoSpringQueenLS_900x.jpg?v=1658142421",
+      "likes": 1,
+      "views": 5,
+      "needs": [
+        "Anything"
+      ],
+      "type": "swap",
+      "date_published": "2022-08-12T18:14:53.850Z",
+      "id": 9
     }
   ],
   "offers": [

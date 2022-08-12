@@ -1,7 +1,8 @@
 import React,{useState} from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function NewItem({getFormData}){
+  let navigate = useNavigate();
   const [itemFormData, setItemFormData] = useState({
     name: "",
     category:"",
@@ -50,7 +51,11 @@ function NewItem({getFormData}){
       body:JSON.stringify(newFormData),
     })
     .then(r=>r.json())
-    .then(data=>getFormData(data))
+    .then(data=>{
+      
+      getFormData(data)
+      navigate(`/item/${data.category}/${data.id}`)    
+    })
   }
 
 
@@ -75,8 +80,8 @@ function NewItem({getFormData}){
                   </div>
                   <div className="mt-4">
                     <label for="categories" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select the item category</label>
-                    <select id="categories" name="category" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                      <option value="" selected>Select an Item</option>
+                    <select id="categories" defaultValue="Select an Item" name="category" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      <option value="">Select an Item</option>
                       <option value="Clothing">Clothing</option>
                       <option value="Electronics">Electronics</option>
                       <option value="Home">Home</option>
