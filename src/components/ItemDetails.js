@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams,NavLink } from "react-router-dom";
 import OfferButton from "./OfferButton";
-
+import offerError from "../assets/404.gif";
 
 function ItemDetails({updatedItem, offerData}){
   const [itemDetail, setItemDetail] = useState({});
@@ -188,21 +188,44 @@ function ItemDetails({updatedItem, offerData}){
                               <div className="relative md:h-60 w-1/3">
                                 <img className="w-full h-full rounded-md object-center object-cover" src={gOffer.offerImage} alt={gOffer.offerName}/>
                               </div>
-                              <div className="flex flex-col justify-between">
+                              <div className="ml-5 flex flex-col justify-between">
                                 <div>
                                   <p className="mr-2 text-gray-600 font-medium " >{gOffer.offerName}</p>
                                   <p>{gOffer.offerDisc}</p>
                                 </div>
                                 <div className="flex justify-between">
-                                  <button>Deny</button>
-                                  <button>Accept</button>
+                                  <button type="button" className="inline-flex justify-center items-center px-4 mr-5 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-gray-600 bg-gray-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 mr-1 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                      <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                    Deny
+                                  </button>
+                                  <button type="button" className={`inline-flex justify-center items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-teal-900 bg-teal-500`}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 mr-1 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                      <path d="M8 5a1 1 0 100 2h5.586l-1.293 1.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L13.586 5H8zM12 15a1 1 0 100-2H6.414l1.293-1.293a1 1 0 10-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L6.414 15H12z" />
+                                    </svg>
+                                    Accept
+                                  </button>
                                 </div>
                               </div>
                             </div>
                           ))
                         )
                         :
-                        (<p>None{offerDetail.length}</p>)
+                        (
+                          <div className="flex py-2 border-b">
+                              <div className="relative md:h-60 w-1/3">
+                                <img className="w-full h-full rounded-md object-center object-cover" src={offerError} alt="offer error"/>
+                              </div>
+                              <div className="flex flex-col justify-between">
+                                <div>
+                                  <h1 className="mb-8 mr-2 text-red-600 text-3xl font-medium " >No Offers Yet, Be the first to make an Offer</h1>
+                                  
+                                  <OfferButton />
+                                </div>
+                              </div>
+                            </div>
+                        )
                       }
                       
                     </div>
