@@ -21,7 +21,7 @@ function Login(){
                   <div className="mt-4">
                     <label className="block">Password</label>
                       <input type="password" placeholder="Password" className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"/>
-                      <span class="text-xs text-gray-400">Forgot Password?</span>
+                      <span className="text-xs text-gray-400">Forgot Password?</span>
                   </div>
                   <div className="flex">
                     <button className="w-full px-6 py-2 mt-4 text-white bg-black rounded-lg hover:bg-gray-500">Login</button>

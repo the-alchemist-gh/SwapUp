@@ -76,11 +76,11 @@ function NewItem({getFormData}){
                 <div className="mt-4">
                   <div>
                     <label className="block" for="Name">Name of Item</label>
-                    <input type="text" placeholder="Name of Item" name="name" onChange={handleChange}  value={itemFormData.name} className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1"/>
+                    <input type="text" required placeholder="Name of Item" name="name" onChange={handleChange}  value={itemFormData.name} className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1"/>
                   </div>
                   <div className="mt-4">
                     <label for="categories" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Select the item category</label>
-                    <select id="categories" defaultValue="Select an Item" name="category" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <select id="categories" required defaultValue="Select an Item" name="category" onChange={handleChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                       <option value="">Select an Item</option>
                       <option value="Clothing">Clothing</option>
                       <option value="Electronics">Electronics</option>
@@ -94,22 +94,22 @@ function NewItem({getFormData}){
                     <textarea id="description" rows="3" name="description" onChange={handleChange}  value={itemFormData.description} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Eg, Bought this 3months but I don't use it anymore..."></textarea>
                   </div>
                   <div className="mt-4">
-                    <label for="default-toggle" class="inline-flex relative items-center mb-4 cursor-pointer">
-                      <input type="checkbox" onChange={handleCheckChange} name="type" id="default-toggle" class="sr-only peer" value="swap"/>
-                      <div class="w-11 h-6 bg-gray-200 rounded-full peer dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-teal-600"></div>
-                      <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Give Away for Free</span>
+                    <label for="default-toggle" className="inline-flex relative items-center mb-4 cursor-pointer">
+                      <input type="checkbox" onChange={handleCheckChange} name="type" id="default-toggle" className="sr-only peer" value="swap"/>
+                      <div className="w-11 h-6 bg-gray-200 rounded-full peer dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-teal-600"></div>
+                      <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Give Away for Free</span>
                     </label>
                   </div>
                   <div className="mt-4">
                     <label for="itemswap" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">What do you want for this Item?</label>
                     <textarea id="item-swap" rows="2" name="needs" onChange={handleChange}  value={itemFormData.needs} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Eg. Book,Lamp,Watch"></textarea>
-                    <span class="text-xs text-gray-400">Enter Items separated by Comma. Eg. Book,Lamp,Watch</span>
+                    <span className="text-xs text-gray-400">Enter Items separated by Comma. Eg. Book,Lamp,Watch</span>
                   </div>
                   <div className="mt-4 flex justify-between">
                     <div className="w-3/5">
                       <label className="block" for="Image_url">Item Image Url</label>
                       <input type="text" name="image_url" onChange={handleChange}  value={itemFormData.image_url} placeholder="Kindly enter image url" className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1"/>
-                      <span class="text-xs text-gray-400">Enter the full url to the image of the item.</span>
+                      <span className="text-xs text-gray-400">Enter the full url to the image of the item.</span>
                     </div>
                     <div className="w-2/5 ml-2 relative rounded-md border-dashed h-24 border-2">
                       {
