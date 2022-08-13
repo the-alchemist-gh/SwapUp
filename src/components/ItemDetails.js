@@ -15,7 +15,7 @@ function ItemDetails({updatedItem, offerData}){
       fetch(`http://localhost:3000/swaps/${id}`)
       .then(r => r.json())
       .then(data => {
-        setItemDetail(data)
+        setItemDetail(data);
         
         fetch(`http://localhost:3000/swaps/${id}`,{
           method: "PATCH",
@@ -23,19 +23,21 @@ function ItemDetails({updatedItem, offerData}){
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            views: parseInt(data.views+1) ,
+            views: (data.views+1) ,
           }),
         })
         .then(r=>r.json())
         .then(data2=>{
-          updatedItem(data2);
+          // console.log(data2);
           setItemDetail(data2);
-        }
+        });
         
-        )
-
       })
   }, [id]);
+
+  // if(itemDetail){
+  //   updatedItem(itemDetail)
+  // };
 
   function handleLikeBtn(){
     fetch(`http://localhost:3000/swaps/${id}`,{
@@ -58,15 +60,12 @@ function ItemDetails({updatedItem, offerData}){
   
   function handleShowOffer(){
     const newOfferData = offerData.filter((offer) => {
-        if (offer.offerFor=== parseInt(id)) return true;
+        return (offer.offerFor=== parseInt(id));
   })
   setOfferDetail(newOfferData);
 
     setShowOffer(showOffer=>!showOffer)
   }
-
-  console.log(offerDetail, offerDetail.length, itemDetail.id,id);
-
 
 
   return (
@@ -74,7 +73,7 @@ function ItemDetails({updatedItem, offerData}){
       <div className="bg-white">
         <div className="pt-6">
           <nav aria-label="Breadcrumb">
-            <ol role="list" className="max-w-2xl mx-auto px-4 flex items-center space-x-2 sm:px-6 lg:max-w-7xl lg:px-8">
+            <ol className="max-w-2xl mx-auto px-4 flex items-center space-x-2 sm:px-6 lg:max-w-7xl lg:px-8">
               <li>
                 <div className="flex items-center">
                   <NavLink to="/" className="mr-2 text-sm font-medium text-gray-900"> Homepage </NavLink>

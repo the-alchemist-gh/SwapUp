@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React,{useState,} from "react";
 import { NavLink } from "react-router-dom";
 import OfferButton from "./OfferButton";
 
@@ -6,61 +6,33 @@ import OfferButton from "./OfferButton";
 function Item({items, updatedItem, offerData}){
   const {id,name,description,category,image_url,likes,views,needs,type} = items;
   const [likeState, setLikeState] = useState(likes);
+  // const [productUpdateState, setProductUpdateState] = useState({});
+
+
 
   const [btnIcon, setBtnIcon] = useState(false);
 
   function handleClick(){
-    setLikeState(likeState + 1);
-    setBtnIcon(true);
-  }
-
-  // function handleViewClick(){
-    
-  //   setViewState(viewState+1)
-  //   console.log(viewState+1)
-  //   fetch(`http://localhost:3000/swaps/${id}`,{
-  //         method: "PATCH",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           views: parseInt(viewState) ,
-  //         }),
-  //       })
-  //       .then(r=>r.json())
-  //       .then(data=>console.log(data))
-
-  // }
-
-  // useEffect(()=>{
-  //   fetch(`http://localhost:3000/swaps/${id}`,{
-  //     method: "PATCH",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       views: parseInt(viewState) ,
-  //     }),
-  //   })
-  //   .then(r=>r.json())
-  //   .then(data=>console.log(data))
-
-  // },[id, viewState])
-
-  useEffect(()=>{
+    // setLikeState(likeState);
     fetch(`http://localhost:3000/swaps/${id}`,{
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        likes: parseInt(likeState) ,
+        likes: (likeState + 1) ,
       }),
-    })
+    }) 
     .then(r=>r.json())
-    .then(data=>updatedItem(data))
-  },[id, likeState])
-
+    .then(data=>{
+      updatedItem(data)
+      setLikeState(data.likes)
+    })
+    setBtnIcon(true);
+  }
+  // setLikeState(likes)
+  
+  // updatedItem(productUpdateState)
   const offerCounts = offerData.reduce((c, { offerFor: key }) => (c[key] = (c[key] || 0) + 1, c), {});
 
   return (
