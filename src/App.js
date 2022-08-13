@@ -17,11 +17,11 @@ function App() {
   const [categoryState, setCategoryState] = useState("All");
 
   useEffect(()=>{
-    fetch("http://localhost:3000/swaps")
+    fetch("https://swapup-api.herokuapp.com/swaps")
     .then(r=> r.json())
     .then((data)=>{
 
-      fetch("http://localhost:3000/offers")
+      fetch("https://swapup-api.herokuapp.com/offers")
     .then(resp=>resp.json())
     .then(offerData=>{
       setOfferState(offerData)

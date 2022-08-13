@@ -12,12 +12,12 @@ function ItemDetails({updatedItem, offerData}){
 
   useEffect(() => {
 
-      fetch(`http://localhost:3000/swaps/${id}`)
+      fetch(`https://swapup-api.herokuapp.com/swaps/${id}`)
       .then(r => r.json())
       .then(data => {
         setItemDetail(data);
         
-        fetch(`http://localhost:3000/swaps/${id}`,{
+        fetch(`https://swapup-api.herokuapp.com/swaps/${id}`,{
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -40,7 +40,7 @@ function ItemDetails({updatedItem, offerData}){
   // };
 
   function handleLikeBtn(){
-    fetch(`http://localhost:3000/swaps/${id}`,{
+    fetch(`https://swapup-api.herokuapp.com/swaps/${id}`,{
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",

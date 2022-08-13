@@ -43,7 +43,7 @@ function NewItem({getFormData}){
       date_published: itemFormData.date_published
     } 
     setItemFormData(newFormData);
-    fetch("http://localhost:3000/swaps",{
+    fetch("https://swapup-api.herokuapp.com/swaps",{
       method: "POST",
       headers: {
         "Content-Type": "application/json",
