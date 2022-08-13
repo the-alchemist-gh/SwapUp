@@ -30,9 +30,7 @@ function Item({items, updatedItem, offerData}){
     })
     setBtnIcon(true);
   }
-  // setLikeState(likes)
-  
-  // updatedItem(productUpdateState)
+  // eslint-disable-next-line no-sequences
   const offerCounts = offerData.reduce((c, { offerFor: key }) => (c[key] = (c[key] || 0) + 1, c), {});
 
   return (
