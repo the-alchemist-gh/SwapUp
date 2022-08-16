@@ -27,7 +27,7 @@ function NewItem({getFormData}){
       ...itemFormData,
       [e.target.name]: !e.target.checked?"swap":"free"
     });
-  }
+  } 
 
   function handleSubmit(e){
     e.preventDefault();

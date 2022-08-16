@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import ItemCategory from "./components/ItemCategory";
 import ItemList from "./components/ItemList";
@@ -11,26 +11,40 @@ import ItemDetails from "./components/ItemDetails";
 // import itemData from "../db.json";
 
 function App() {
+  let loginRedirect = useNavigate();
+  const [logInState, setLogInState] = useState(false);
+  const [logInName, setLogInName] = useState("");
   const [itemState, setItemState] = useState([]);
   const [offerState,setOfferState] = useState([])
   const [searchState, setSearchState] = useState("");
   const [categoryState, setCategoryState] = useState("All");
 
+  function confirmLogin(value, name){
+    setLogInState(value)
+    setLogInName(name)
+  }
+
   useEffect(()=>{
-    fetch("https://swapup-api.herokuapp.com/swaps")
-    .then(r=> r.json())
-    .then((data)=>{
+    logInState ? (
+      fetch("https://swapup-api.herokuapp.com/swaps")
+      .then(r=> r.json())
+      .then((data)=>{
 
       fetch("https://swapup-api.herokuapp.com/offers")
-    .then(resp=>resp.json())
-    .then(offerData=>{
-      setOfferState(offerData)
-    }
+      .then(resp=>resp.json())
+      .then(offerData=>{
+        setOfferState(offerData)
+      })
+        setItemState(data)
+      })
+    ) : (
+      window.location.pathname !== "/register" ? loginRedirect("/login") : loginRedirect("/register")
+      
     )
-      setItemState(data)
-    })
-  },[])
+  },[logInState, loginRedirect])
 
+  // console.log(window.location.href); 
+  // console.log(window.location.pathname); 
   function getSearchValue(value){
     setSearchState(value);
   }
@@ -74,14 +88,14 @@ function App() {
 
   return (
     <>
-      <Navbar sendSearchValue = {getSearchValue} />
+      <Navbar sendSearchValue = {getSearchValue} isLoggedIn={logInState} loginName = {logInName} />
       <Routes>
         <Route path="/item/:category/:id" element={<ItemDetails updatedItem={onUpdateItem} offerData = {offerState}/>}></Route>
         <Route path="/item/add-new" element={<NewItem getFormData={addNewItem}/>}>
         </Route>
         <Route path="/register" element={<Register />}>
         </Route>
-        <Route path="/login" element={<Login />}></Route>
+        <Route path="/login" element={<Login confirmLogin={confirmLogin} />}></Route>
         <Route exact path="/" element={
           <>
             <ItemCategory sendCategoryValue = {getCategoryValue}  />

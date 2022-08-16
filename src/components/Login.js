@@ -1,7 +1,51 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React,{useState} from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
-function Login(){
+function Login({confirmLogin}){
+  let homeRedirect = useNavigate();
+  const [loginDataState, setLoginDataState] = useState({
+    email: "",
+    password: ""
+  });
+
+  function handleChange(e){
+    setLoginDataState({
+      ...loginDataState,
+      [e.target.name]: e.target.value
+    });
+  }
+
+  function handleFormSubmit(e){
+    e.preventDefault();
+
+    // get request to get all users
+    fetch("https://swapup-api.herokuapp.com/users")
+      .then(r=> r.json())
+      .then((data)=>{
+
+        const newLogInData = {
+          email: loginDataState.email,
+          password: loginDataState.password
+        };
+        setLoginDataState(newLogInData);
+        data.map(userData=>{
+          if(userData.email === loginDataState.email){
+            if(userData.password === loginDataState.password ){
+              confirmLogin(true, userData.name)
+              return homeRedirect("/")
+            } else{
+              return console.log("wrong password")
+            }
+          } else {
+            return console.log("wrong email")
+          }
+
+        });
+
+      })
+
+  }
+
   return (
     <>
       <div className="flex items-center justify-center content-center bg-gray-100">
@@ -12,23 +56,23 @@ function Login(){
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-center text-teal-600">Welcome Back...</h3>
-              <form action="">
+              <form onSubmit={handleFormSubmit}>
                 <div className="mt-4">
                   <div className="mt-4">
                     <label className="block" for="email">Email</label>
-                    <input type="text" placeholder="Email" className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"/>
+                    <input type="text" placeholder="Email" name="email" onChange={handleChange}  value={loginDataState.email} className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"/>
                   </div>
                   <div className="mt-4">
                     <label className="block">Password</label>
-                      <input type="password" placeholder="Password" className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"/>
+                      <input type="password" placeholder="Password" name="password" onChange={handleChange}  value={loginDataState.password}  className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"/>
                       <span className="text-xs text-gray-400">Forgot Password?</span>
                   </div>
                   <div className="flex">
-                    <button className="w-full px-6 py-2 mt-4 text-white bg-black rounded-lg hover:bg-gray-500">Login</button>
+                    <button type="submit" className="w-full px-6 py-2 mt-4 text-white bg-black rounded-lg hover:bg-gray-500">Login</button>
                   </div>
                   <div className="mt-6 text-grey-dark">
                     Don't have an account yet? <span> 
-                      <NavLink className="text-teal-600 text-bold hover:underline" to="/login">
+                      <NavLink className="text-teal-600 text-bold hover:underline" to="/register">
                         Register Now
                       </NavLink>
                     </span>
@@ -45,7 +89,7 @@ function Login(){
                 </div>
               </form>
             </div>
-          </div>
+      </div>
     </>
   )
 }

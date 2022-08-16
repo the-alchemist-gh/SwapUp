@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import NavButton from "./NavButton";
 // import NewItem from "./NewItem";
 
-function Navbar({sendSearchValue}){
+function Navbar({sendSearchValue, loginName, isLoggedIn}){
   const [navbar, setNavbar] = useState(false);
 
   function handleSearch(e){
@@ -14,6 +14,7 @@ function Navbar({sendSearchValue}){
 //   function handleAddNewItem(){
 
 //   }
+console.log(loginName, isLoggedIn)
 
   return (
     <div >
@@ -85,12 +86,27 @@ function Navbar({sendSearchValue}){
                       }`}>
                       <div className="mt-3 space-y-2 lg:hidden md:inline-block">
                         <ul className="items-center lg-hidden flex justify-between md:flex md:space-x-6 md:space-y-0">
-                            <li className="text-teal-600">
-                                <NavLink to="/login">Log In</NavLink>
-                            </li>
-                            <li className="text-teal-600">
-                                <NavLink to="/register">Register</NavLink>
-                            </li>
+                            {
+                                isLoggedIn ? (
+                                    <><li className="text-teal-600">
+                                              Welcome {loginName}
+                                          </li><li className="text-teal-600">
+                                                  <NavLink to="/register">Log Out</NavLink>
+                                              </li>
+                                    </>
+                                ) : (
+                                    <>
+                                    <li className="text-teal-600">
+                                        <NavLink to="/login">Log In</NavLink>
+                                    </li>
+                                    <li className="text-teal-600">
+                                        <NavLink to="/register">Register</NavLink>
+                                    </li>
+                                </>
+                                )
+                            }
+                           
+                            
                         </ul>
                         <NavButton />
                       </div>
@@ -105,12 +121,26 @@ function Navbar({sendSearchValue}){
                           <li>
                              <NavButton />
                           </li>
-                          <li className="text-teal-600">
-                              <NavLink to="/login">Log In</NavLink>
-                          </li>
-                          <li className="text-teal-600">
-                              <NavLink to="/register">Register</NavLink>
-                          </li>
+
+                          {
+                                isLoggedIn ? (
+                                    <><li className="text-teal-600">
+                                              Welcome {loginName}
+                                          </li><li className="text-teal-600">
+                                                  <NavLink to="/register">Log Out</NavLink>
+                                              </li>
+                                    </>
+                                ) : (
+                                    <>
+                                    <li className="text-teal-600">
+                                        <NavLink to="/login">Log In</NavLink>
+                                    </li>
+                                    <li className="text-teal-600">
+                                        <NavLink to="/register">Register</NavLink>
+                                    </li>
+                                </>
+                                )
+                            }
                           
                       </ul>
                       
