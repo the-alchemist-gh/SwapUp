@@ -32,10 +32,10 @@ function Login({confirmLogin}){
           if(userData.email === loginDataState.email){
             if(userData.password === loginDataState.password ){
               confirmLogin(true, userData.name)
-              return homeRedirect("/")
+              return homeRedirect("/");
             } else{
               return console.log("wrong password")
-            }
+            };
           } else {
             return console.log("wrong email")
           }
