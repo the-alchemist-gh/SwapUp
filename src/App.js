@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import ItemCategory from "./components/ItemCategory";
 import ItemList from "./components/ItemList";
@@ -11,7 +11,7 @@ import ItemDetails from "./components/ItemDetails";
 // import itemData from "../db.json";
 
 function App() {
-  let loginRedirect = useNavigate();
+  // let loginRedirect = useNavigate();
   const [logInState, setLogInState] = useState(false);
   const [logInName, setLogInName] = useState("");
   const [itemState, setItemState] = useState([]);
@@ -25,7 +25,7 @@ function App() {
   }
 
   useEffect(()=>{
-    logInState ? (
+    // logInState ? (
       fetch("https://swapup-api.herokuapp.com/swaps")
       .then(r=> r.json())
       .then((data)=>{
@@ -37,11 +37,11 @@ function App() {
       })
         setItemState(data)
       })
-    ) : (
-      window.location.pathname !== "/register" ? loginRedirect("/login") : loginRedirect("/register")
+    // ) : (
+    //   window.location.pathname !== "/register" ? loginRedirect("/login") : loginRedirect("/register")
       
-    )
-  },[logInState, loginRedirect])
+    // )
+  },[])
 
   // console.log(window.location.href); 
   // console.log(window.location.pathname); 
@@ -99,7 +99,7 @@ function App() {
         <Route exact path="/" element={
           <>
             <ItemCategory sendCategoryValue = {getCategoryValue}  />
-            <ItemList updatedItem={onUpdateItem} offerData = {offerState} itemData = {filteredItemData} />
+            <ItemList isLoggedIn={logInState} updatedItem={onUpdateItem} offerData = {offerState} itemData = {filteredItemData} />
           </>
         }>
         </Route>

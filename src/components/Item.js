@@ -3,47 +3,50 @@ import { NavLink } from "react-router-dom";
 import OfferButton from "./OfferButton";
 
 
-function Item({items, updatedItem, offerData}){
+function Item({isLoggedIn, items, updatedItem, offerData}){
   const {id,name,description,category,image_url,likes,views,needs,type} = items;
   const [likeState, setLikeState] = useState(likes);
   // const [productUpdateState, setProductUpdateState] = useState({});
   const [btnIcon, setBtnIcon] = useState(false);
 
   function handleClick(){
-    // setLikeState(likeState);
-    setBtnIcon(btnIcon=>!btnIcon);
-    !btnIcon ? (
+    isLoggedIn ? (
+      setBtnIcon(btnIcon=>!btnIcon)
+      
+      (!btnIcon) ? (
+          fetch(`https://swapup-api.herokuapp.com/swaps/${id}`,{
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            likes: (likeState + 1) ,
+          }),
+        }) 
+        .then(r=>r.json())
+        .then(data=>{
+          updatedItem(data)
+          setLikeState(data.likes)
+        })
+      ):(
         fetch(`https://swapup-api.herokuapp.com/swaps/${id}`,{
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          likes: (likeState + 1) ,
-        }),
-      }) 
-      .then(r=>r.json())
-      .then(data=>{
-        updatedItem(data)
-        setLikeState(data.likes)
-      })
-    ) : (
-      fetch(`https://swapup-api.herokuapp.com/swaps/${id}`,{
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          likes: (likeState - 1) ,
-        }),
-      }) 
-      .then(r=>r.json())
-      .then(data=>{
-        updatedItem(data)
-        setLikeState(data.likes)
-      })
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            likes: (likeState - 1) ,
+          }),
+        }) 
+        .then(r=>r.json())
+        .then(data=>{
+          updatedItem(data)
+          setLikeState(data.likes)
+        })
+      )
+    ):(
+      alert("Kindly login to Like an Item")
     )
-    
     
   }
   // eslint-disable-next-line no-sequences

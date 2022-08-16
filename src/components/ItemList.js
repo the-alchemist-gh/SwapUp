@@ -1,13 +1,13 @@
 import React from "react";
 import Item from "./Item";
 
-function ItemList({itemData, updatedItem, offerData}){
+function ItemList({isLoggedIn,itemData, updatedItem, offerData}){
   return (
     <>
       <div className="p-10 md:container md:mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-10">
         {
           itemData.map((item)=>(
-            <Item key={item.id} offerData={offerData} updatedItem = {updatedItem} items={item}/>
+            <Item key={item.id} isLoggedIn={isLoggedIn} offerData={offerData} updatedItem = {updatedItem} items={item}/>
           ))
         }
       </div>
