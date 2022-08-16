@@ -7,28 +7,44 @@ function Item({items, updatedItem, offerData}){
   const {id,name,description,category,image_url,likes,views,needs,type} = items;
   const [likeState, setLikeState] = useState(likes);
   // const [productUpdateState, setProductUpdateState] = useState({});
-
-
-
   const [btnIcon, setBtnIcon] = useState(false);
 
   function handleClick(){
     // setLikeState(likeState);
-    fetch(`https://swapup-api.herokuapp.com/swaps/${id}`,{
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        likes: (likeState + 1) ,
-      }),
-    }) 
-    .then(r=>r.json())
-    .then(data=>{
-      updatedItem(data)
-      setLikeState(data.likes)
-    })
-    setBtnIcon(true);
+    setBtnIcon(btnIcon=>!btnIcon);
+    !btnIcon ? (
+        fetch(`https://swapup-api.herokuapp.com/swaps/${id}`,{
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          likes: (likeState + 1) ,
+        }),
+      }) 
+      .then(r=>r.json())
+      .then(data=>{
+        updatedItem(data)
+        setLikeState(data.likes)
+      })
+    ) : (
+      fetch(`https://swapup-api.herokuapp.com/swaps/${id}`,{
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          likes: (likeState - 1) ,
+        }),
+      }) 
+      .then(r=>r.json())
+      .then(data=>{
+        updatedItem(data)
+        setLikeState(data.likes)
+      })
+    )
+    
+    
   }
   // eslint-disable-next-line no-sequences
   const offerCounts = offerData.reduce((c, { offerFor: key }) => (c[key] = (c[key] || 0) + 1, c), {});
@@ -40,7 +56,7 @@ function Item({items, updatedItem, offerData}){
           <img className="h-full w-full object-cover" src={image_url} alt={name}/>
           <div className="absolute bottom-0 left-0 right-0 py-10 bg-gradient-to-t from-gray-900">
             <div onClick={handleClick} className="absolute bottom-0 bg-white rounded-full right-0 m-3 p-1">
-              <span className="flex">
+              <span className="flex pr-1">
                 {
                   btnIcon ? (
                     <svg xmlns="http://www.w3.org/2000/svg" className="text-red-600 h-5 w-5 mx-1" viewBox="0 0 20 20" fill="currentColor">

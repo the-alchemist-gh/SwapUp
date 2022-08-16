@@ -11,10 +11,9 @@ function Navbar({sendSearchValue, loginName, isLoggedIn}){
     sendSearchValue(e.target.value);
   }
 
-//   function handleAddNewItem(){
-
-//   }
-console.log(loginName, isLoggedIn)
+  function handleLogOut(){
+    window.location.reload();
+  }
 
   return (
     <div >
@@ -90,8 +89,8 @@ console.log(loginName, isLoggedIn)
                                 isLoggedIn ? (
                                     <><li className="text-teal-600">
                                               Welcome {loginName}
-                                          </li><li className="text-teal-600">
-                                                  <NavLink to="/register">Log Out</NavLink>
+                                          </li><li onClick={handleLogOut} className="text-teal-600">
+                                                  <button type="button">Log Out</button>
                                               </li>
                                     </>
                                 ) : (
@@ -126,8 +125,8 @@ console.log(loginName, isLoggedIn)
                                 isLoggedIn ? (
                                     <><li className="text-teal-600">
                                               Welcome {loginName}
-                                          </li><li className="text-teal-600">
-                                                  <NavLink to="/register">Log Out</NavLink>
+                                          </li><li onClick={handleLogOut} className="text-teal-600">
+                                                  <button type="button">Log Out</button>
                                               </li>
                                     </>
                                 ) : (

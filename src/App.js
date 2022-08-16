@@ -91,7 +91,7 @@ function App() {
       <Navbar sendSearchValue = {getSearchValue} isLoggedIn={logInState} loginName = {logInName} />
       <Routes>
         <Route path="/item/:category/:id" element={<ItemDetails updatedItem={onUpdateItem} offerData = {offerState}/>}></Route>
-        <Route path="/item/add-new" element={<NewItem getFormData={addNewItem}/>}>
+        <Route path="/item/add-new" element={<NewItem getFormData={addNewItem} />}>
         </Route>
         <Route path="/register" element={<Register />}>
         </Route>
