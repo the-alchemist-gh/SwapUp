@@ -10,25 +10,24 @@ function Item({isLoggedIn, items, updatedItem, offerData}){
   const [btnIcon, setBtnIcon] = useState(false);
 
   function handleClick(){
-    isLoggedIn ? (
+    if(isLoggedIn){
       setBtnIcon(btnIcon=>!btnIcon)
-      
-      (!btnIcon) ? (
-          fetch(`https://swapup-api.herokuapp.com/swaps/${id}`,{
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            likes: (likeState + 1) ,
-          }),
-        }) 
-        .then(r=>r.json())
-        .then(data=>{
-          updatedItem(data)
-          setLikeState(data.likes)
-        })
-      ):(
+      if(!btnIcon){
+        fetch(`https://swapup-api.herokuapp.com/swaps/${id}`,{
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              likes: (likeState + 1) ,
+            }),
+          }) 
+          .then(r=>r.json())
+          .then(data=>{
+            updatedItem(data)
+            setLikeState(data.likes)
+          })
+      } else {
         fetch(`https://swapup-api.herokuapp.com/swaps/${id}`,{
           method: "PATCH",
           headers: {
@@ -43,11 +42,10 @@ function Item({isLoggedIn, items, updatedItem, offerData}){
           updatedItem(data)
           setLikeState(data.likes)
         })
-      )
-    ):(
+      }
+    } else {
       alert("Kindly login to Like an Item")
-    )
-    
+    }    
   }
   // eslint-disable-next-line no-sequences
   const offerCounts = offerData.reduce((c, { offerFor: key }) => (c[key] = (c[key] || 0) + 1, c), {});
